@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambrosio – Marketing e Tráfego de Performance</title>
+    <!-- Adicione seus scripts de rastreamento (Pixel, Analytics) aqui -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cor-principal: #ff630a;
+            --cor-fundo: #121212;
+            --cor-fundo-secundario: #1e1e1e;
+            --cor-texto: #ffffff;
+            --cor-texto-secundario: #b3b3b3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif;
+            margin: 0;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        /* Seções */
+        section {
+            padding: 80px 20px;
+            overflow: hidden; /* Garante que os elementos animados não causem scroll horizontal */
+        }
+
+        section.hero {
+            background-color: var(--cor-fundo);
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        section.servicos, section.planos, section.clientes {
+            background-color: var(--cor-fundo-secundario);
+        }
+        
+        section.diferenciais, section.metodologia, section.para-quem, section.faq, section.sobre-mim {
+             background-color: var(--cor-fundo);
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+            color: var(--cor-texto);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: -1px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            color: var(--cor-texto-secundario);
+            max-width: 700px;
+            margin: 20px auto 40px auto;
+        }
+        
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+        }
+
+        p {
+            color: var(--cor-texto-secundario);
+            font-size: 1.1em;
+        }
+
+        span.destaque {
+            color: var(--cor-principal);
+        }
+
+        /* Logo */
+        .logo-container {
+            display: flex;
+            align-items: flex-end; /* Alinha os itens pela base total (incluindo sub-logo) */
+            justify-content: center;
+            gap: 0; /* Remove o espaço entre o ícone e o texto */
+            margin-bottom: 30px;
+        }
+        .logo-container svg {
+            margin-right: -4px; /* Puxa o texto para mais perto do A */
+        }
+        .logo-container h1 {
+            font-size: 2.5em; /* Aumenta o tamanho da fonte */
+            margin: 0;
+            text-align: left;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .logo-container .sub-logo {
+            font-size: 0.4em;
+            font-weight: 400;
+            color: var(--cor-texto-secundario);
+            display: block;
+            letter-spacing: 0;
+        }
+
+
+        /* Botão CTA */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cor-principal);
+            color: var(--cor-texto);
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 99, 10, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-2px);
+            background-color: #e65600;
+            box-shadow: 0 8px 25px rgba(255, 99, 10, 0.4);
+        }
+
+        /* Grid de Serviços */
+        .grid-servicos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-top: 50px;
+        }
+
+        .servico-item {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--cor-principal);
+        }
+
+        .servico-item h3 {
+            margin-top: 0;
+            color: var(--cor-principal);
+        }
+        
+        /* Seção "Para Quem É" */
+        .para-quem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            text-align: left;
+        }
+        
+        .coluna-es, .coluna-nao {
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .coluna-es { background-color: rgba(0, 208, 130, 0.1); border: 1px solid rgba(0, 208, 130, 0.5); }
+        .coluna-nao { background-color: rgba(207, 46, 46, 0.1); border: 1px solid rgba(207, 46, 46, 0.5); }
+        
+        .para-quem-grid ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .para-quem-grid li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .para-quem-grid .icon {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .icon.check { color: #00d084; }
+        .icon.times { color: #cf2e2e; }
+
+
+        /* FAQ */
+        .faq-item {
+            background-color: var(--cor-fundo-secundario);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .faq-pergunta {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-resposta {
+            padding: 0 20px 20px 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .faq-item.active .faq-resposta {
+            max-height: 300px;
+        }
+        
+        .faq-pergunta::after {
+            content: '+';
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-pergunta::after {
+            transform: rotate(45deg);
+        }
+        
+        /* Seção Clientes */
+        .clientes-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .cliente-logo img {
+            max-width: 180px;
+            filter: grayscale(100%) contrast(0.5) brightness(1.5);
+            transition: filter 0.3s ease;
+        }
+        .cliente-logo img:hover {
+            filter: none;
+        }
+
+        /* Planos */
+        .grid-planos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            align-items: center; 
+        }
+        .plano-item {
+            background-color: #2a2a2a;
+            padding: 40px 30px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .plano-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .plano-item.destaque-plano {
+            border-color: var(--cor-principal);
+            transform: scale(1.05); 
+        }
+        .selo-destaque {
+            position: absolute;
+            top: 15px;
+            right: -45px;
+            background-color: var(--cor-principal);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.9em;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+        .plano-item h3 {
+            font-size: 1.8em;
+            color: var(--cor-principal);
+            margin-bottom: 20px;
+        }
+        .plano-item .preco {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: var(--cor-texto-secundario);
+        }
+        .plano-item .preco span {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--cor-texto);
+        }
+        .plano-item ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 40px;
+            min-height: 250px; 
+        }
+        .plano-item li {
+            margin-bottom: 15px;
+            color: var(--cor-texto-secundario);
+        }
+        .plano-item .cta-button {
+            width: 100%;
+            box-sizing: border-box; 
+        }
+        
+        /* Sobre Mim */
+        .sobre-mim-flex {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            text-align: left;
+        }
+        .sobre-mim-img {
+            flex-shrink: 0;
+        }
+        .sobre-mim-img img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--cor-principal);
+        }
+        .sobre-mim-texto h2 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .sobre-mim-texto h3 {
+            font-size: 1.3em;
+            color: var(--cor-texto-secundario);
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--cor-texto-secundario);
+            font-size: 0.9em;
+        }
+        
+        /* Efeitos e Animações */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .servico-item, .plano-item, .faq-item, .cliente-logo, .sobre-mim-flex {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .plano-item.destaque-plano {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1, .hero h2 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            .logo-container {
+                flex-direction: row; /* Mantem na horizontal em mobile */
+                gap: 0;
+            }
+            .logo-container h1 {
+                text-align: left;
+            }
+            .para-quem-grid { grid-template-columns: 1fr; }
+            .sobre-mim-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .sobre-mim-texto {
+                text-align: center;
+            }
+            .plano-item ul {
+                min-height: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="logo-container fade-in-section">
+                <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 15 L15 85" stroke="white" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M50 15 L85 85" stroke="white" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M32 60 L68 60" stroke="#ff630a" stroke-width="12" stroke-linecap="round"/>
+                </svg>
+                <h1>mbrosio <span class="sub-logo">Marketing e Tráfego</span></h1>
+            </div>
+            
+            <h2 class="fade-in-section">Seu negócio merece mais que cliques. <span class="destaque">Merece resultados.</span></h2>
+            <p class="fade-in-section">Transformo seu investimento em anúncios em clientes reais. Minha especialidade é unir análise de dados, estratégia de mercado e performance digital para levar seu negócio ao próximo nível.</p>
+            <a href="https://wa.me/5521969700777?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20como%20voc%C3%AA%20pode%20me%20ajudar%20a%20vender%20mais." class="cta-button fade-in-section" target="_blank">Quero vender com performance</a>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="servicos">
+        <div class="container">
+            <div class="fade-in-section">
+                <h2>Soluções Estratégicas para <span class="destaque">Acelerar seu Crescimento</span></h2>
+                <p>Foco em uma abordagem completa que integra as ferramentas mais poderosas do marketing digital.</p>
+            </div>
+            <div class="grid-servicos fade-in-section">
+                <div class="servico-item">
+                    <h3>Gestão de Tráfego Pago</h3>
+                    <p>Desenvolvo e gerencio campanhas de alta performance no Google Ads e Meta Ads, focadas obsessivamente em conversão e na maximização do seu retorno sobre o investimento.</p>
+                </div>
+                <div class="servico-item">
+                    <h3>Consultoria Estratégica</h3>
+                    <p>Mergulho no seu negócio para mapear a jornada do seu cliente, otimizar seu funil de vendas e identificar as melhores oportunidades de crescimento nos canais certos.</p>
+                </div>
+                <div class="servico-item">
+                    <h3>Análise de Dados e BI</h3>
+                    <p>Traduções os números das suas campanhas em insights claros. Com dashboards em tempo real, você toma decisões baseadas em dados, não em suposições.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- METODOLOGIA -->
+    <section class="metodologia">
+        <div class="container">
+            <div class="fade-in-section">
+                <h2>O Caminho para a <span class="destaque">Performance Sustentável</span></h2>
+                <p>Um processo estruturado para garantir os melhores resultados para o seu negócio.</p>
+            </div>
+            <div class="grid-servicos fade-in-section">
+                <div class="servico-item"><h3>1. Imersão e Diagnóstico</h3><p>Mapeio seu modelo de vendas, estrutura comercial e indicadores para entender onde podemos gerar crescimento.</p></div>
+                <div class="servico-item"><h3>2. Plano de Ação Estratégico</h3><p>Defino o plano de ação ideal com sugestões de investimento, formato de oferta e funil, alinhado ao seu perfil.</p></div>
+                <div class="servico-item"><h3>3. Execução e Lançamento</h3><p>Executo tudo: tráfego pago, landing pages e integrações. Deixo a estrutura pronta para gerar resultados.</p></div>
+                <div class="servico-item"><h3>4. Otimização Contínua</h3><p>Testo públicos, criativos e ofertas com base em dados para encontrar o caminho mais lucrativo para você.</p></div>
+            </div>
+            <br><br><br>
+            <a href="https://wa.me/5521969700777?text=Ol%C3%A1!%20Gostei%20da%20sua%20metodologia%20e%20quero%20saber%20mais." class="cta-button fade-in-section" target="_blank">Quero essa metodologia no meu negócio</a>
+        </div>
+    </section>
+
+    <!-- PARA QUEM É -->
+    <section class="para-quem">
+        <div class="container">
+            <div class="fade-in-section">
+                <h2>Este serviço é <span class="destaque">ideal para você?</span></h2>
+                <p>Meu trabalho é ideal para quem leva o marketing a sério e busca um parceiro estratégico.</p>
+            </div>
+            <div class="para-quem-grid fade-in-section">
+                <div class="coluna-es">
+                    <h3>Para quem É:</h3>
+                    <ul>
+                        <li><span class="icon check">✓</span> Profissionais liberais e de saúde que desejam lotar a agenda.</li>
+                        <li><span class="icon check">✓</span> Empresas e e-commerces que buscam crescimento previsível e lucrativo.</li>
+                        <li><span class="icon check">✓</span> Negócios que já anunciam mas sentem que poderiam ter resultados melhores.</li>
+                        <li><span class="icon check">✓</span> Marcas que desejam um marketing inteligente, conectado ao time comercial.</li>
+                        <li><span class="icon check">✓</span> Quem quer parar de perder dinheiro com campanhas que não funcionam.</li>
+                    </ul>
+                </div>
+                <div class="coluna-nao">
+                    <h3>Para quem NÃO é:</h3>
+                    <ul>
+                        <li><span class="icon times">✗</span> Quem busca resultados milagrosos sem estratégia.</li>
+                        <li><span class="icon times">✗</span> Negócios que não estão dispostos a investir em anúncios.</li>
+                        <li><span class="icon times">✗</span> Quem acredita que apenas "impulsionar" posts é o suficiente.</li>
+                        <li><span class="icon times">✗</span> Quem não está disposto a alinhar o processo comercial.</li>
+                        <li><span class="icon times">✗</span> Empresas que não valorizam decisões baseadas em dados.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEUS CLIENTES -->
+    <section class="clientes">
+        <div class="container">
+            <div class="fade-in-section">
+                <h2>Clientes que <span class="destaque">Confiam em Nosso Trabalho</span></h2>
+            </div>
+            <div class="clientes-grid fade-in-section">
+                <div class="cliente-logo">
+                    <img src="logo1.png" alt="Logo Cliente 1" onerror="this.onerror=null;this.src='https://placehold.co/200x100/1e1e1e/3a3a3a?text=Logo+Cliente';">
+                </div>
+                <div class="cliente-logo">
+                    <img src="logo2.jpeg" alt="Logo Cliente 2" onerror="this.onerror=null;this.src='https://placehold.co/200x100/1e1e1e/3a3a3a?text=Logo+Cliente';">
+                </div>
+                <div class="cliente-logo">
+                    <img src="logo3.png" alt="Logo Cliente 3" onerror="this.onerror=null;this.src='https://placehold.co/200x100/1e1e1e/3a3a3a?text=Logo+Cliente';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section class="planos">
+        <div class="container">
+            <div class="fade-in-section">
+                <h2>Planos Sob Medida Para <span class="destaque">o Seu Sucesso</span></h2>
+                <p>Escolha o plano que melhor se adapta ao seu momento e vamos escalar juntos.</p>
+            </div>
+            <div class="grid-planos fade-in-section">
+                
+                <div class="plano-item">
+                    <h3>Plano Impulso</h3>
+                    <div class="preco">R$ <span>599</span>/mês</div>
+                    <ul>
+                        <li>✓ Gestão de Tráfego (Meta Ads)</li>
+                        <li>✓ Dashboard para acompanhamento em tempo real</li>
+                        <li>✓ Reunião mensal de estratégia</li>
+                        <li>✓ Suporte dedicado via WhatsApp</li>
+                        <li>✓ Criação de Criativos para campanhas</li>
+                    </ul>
+                    <a href="https://wa.me/5521969700777?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Impulso." class="cta-button" target="_blank">Contratar Impulso</a>
+                </div>
+                
+                <div class="plano-item destaque-plano">
+                     <div class="selo-destaque">Mais Popular</div>
+                    <h3>Plano Performance</h3>
+                    <div class="preco">R$ <span>799</span>/mês</div>
+                     <ul>
+                        <li>✓ <strong>Tudo do plano Impulso</strong></li>
+                        <li>✓ Gestão estratégica do negócio</li>
+                        <li>✓ Otimização de Funil e Landing Page</li>
+                        <li>✓ Análise de métricas avançada</li>
+                        <li>✓ Suporte para time comercial</li>
+                    </ul>
+                    <a href="https://wa.me/5521969700777?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Performance." class="cta-button" target="_blank">Contratar Performance</a>
+                </div>
+                
+                <div class="plano-item">
+                    <h3>Plano Scale</h3>
+                    <div class="preco">R$ <span>999</span>/mês</div>
+                     <ul>
+                        <li>✓ <strong>Tudo do plano Performance</strong></li>
+                        <li>✓ Gestão de Tráfego (Google Ads)</li>
+                        <li>✓ Reunião <strong>quinzenal</strong> de performance</li>
+                        <li>✓ Direção para gravação de vídeos para anúncios</li>
+                        <li>✓ Criação de Criativos para Feed e Reels</li>
+                        <li>✓ Acompanhamento de implementação de CRM</li>
+                    </ul>
+                    <a href="https://wa.me/5521969700777?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Scale." class="cta-button" target="_blank">Contratar Scale</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MIM -->
+    <section class="sobre-mim">
+        <div class="container sobre-mim-flex fade-in-section">
+            <div class="sobre-mim-img">
+                <img src="matheus.jpeg"  alt="Foto de Matheus Ambrosio">
+            </div>
+            <div class="sobre-mim-texto">
+                <h2>A Mente Analítica por Trás dos <span class="destaque">Seus Resultados</span></h2>
+                <h3>Matheus Ambrosio, Especialista em Dados</h3>
+                <p>Com mais de 6 anos de experiência no mercado de dados e crédito em uma das maiores fintechs do Brasil, a Stone, eu trago uma visão analítica única para a gestão de tráfego. Minha abordagem não é baseada em achismos, mas em dados concretos para maximizar cada real investido.</p>
+                <p>Com MBAs em Gestão e Finanças por instituições como a PUCRS e a Católica Lisbon, minha missão é ir além do gerenciamento de campanhas: eu atuo como um parceiro estratégico, utilizando a inteligência de dados para gerar valor real e crescimento previsível para o seu negócio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAMADA FINAL -->
+    <section class="servicos">
+         <div class="container fade-in-section">
+            <h2>Pronto para escalar com quem <span class="destaque">entrega resultado de verdade?</span></h2>
+            <p>Fale comigo agora e descubra como posso transformar seu investimento em crescimento real.</p>
+            <br>
+            <a href="https://wa.me/5521969700777?text=Ol%C3%A1!%20Estou%20pronto(a)%20para%20escalar%20meu%20neg%C3%B3cio." class="cta-button" target="_blank">Falar com o especialista</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <div class="fade-in-section">
+                <h2>Dúvidas <span class="destaque">Frequentes</span></h2>
+            </div>
+            <div class="faq-container fade-in-section">
+                <div class="faq-item">
+                    <div class="faq-pergunta">O que exatamente vocês fazem?</div>
+                    <div class="faq-resposta">
+                        <p>Nossa função é ser o parceiro estratégico que o seu negócio precisa. Cuidamos de toda a parte de anúncios online, desde o planejamento e criação das campanhas no Google e Meta (Facebook/Instagram), até a análise diária dos resultados para garantir que seu investimento se transforme em lucro.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-pergunta">Preciso ter site ou redes sociais ativas para começar?</div>
+                    <div class="faq-resposta">
+                        <p>Uma base sólida é fundamental. Se você não tiver, não se preocupe. Parte do nosso trabalho é orientar os primeiros passos, seja na criação de uma página de vendas (Landing Page) ou na otimização dos seus perfis existentes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-pergunta">Em quanto tempo vejo resultado?</div>
+                    <div class="faq-resposta">
+                        <p>Depende do seu estágio atual e do mercado, mas normalmente nossos clientes começam a ver melhorias claras (como aumento de contatos e vendas) entre 30 e 60 dias após o início das campanhas.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-pergunta">Qual é o valor recomendado para investir em anúncios?</div>
+                    <div class="faq-resposta">
+                        <p>Recomendamos um mínimo de R$ 30 a R$ 50 por dia para investir diretamente nas plataformas de anúncio (Google/Meta). Com esse valor, já conseguimos testar, validar e otimizar campanhas com consistência.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-pergunta">Já tenho campanhas rodando, vocês conseguem melhorar?</div>
+                    <div class="faq-resposta">
+                        <p>Com certeza. Muitos dos nossos clientes chegam com campanhas ativas, mas que não trazem o retorno esperado. Realizamos uma auditoria completa para identificar falhas, otimizar a estrutura e aplicar uma estratégia que realmente funcione.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p><strong>Ambrosio | Marketing e Tráfego</strong></p>
+            <p>Copyright © 2025 - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o Acordeão do FAQ
+        document.querySelectorAll('.faq-pergunta').forEach(item => {
+            item.addEventListener('click', event => {
+                const faqItem = item.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Script para animação de scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
